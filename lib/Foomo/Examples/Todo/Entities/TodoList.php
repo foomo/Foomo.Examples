@@ -75,7 +75,7 @@ class TodoList
 	public function addEntry(\Foomo\Examples\Todo\Entities\TodoEntry $entry)
 	{
 		if (!is_null($this->getEntry($entry->getId()))) trigger_error('Entry ' . $entry->getId() . ' already exists!', E_USER_ERROR);
-		$this->entries[] = $entry;
+		array_unshift($this->entries, $entry);
 		return $this;
 	}
 
