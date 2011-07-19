@@ -56,7 +56,6 @@ class TodoEntry
 	public function __construct($text)
 	{
 		$this->text = $text;
-		$this->id = md5(microtime() . '-somesalt-' . __CLASS__);
 	}
 
 	//---------------------------------------------------------------------------------------------
@@ -70,6 +69,15 @@ class TodoEntry
 	{
 		return $this->id;
 	}
+	/**
+	 * @param string $id
+	 * @return Foomo\Examples\Todo\Entities\TodoEntry
+	 */
+	public function setId($id)
+	{
+		$this->id = $id;
+		return $this;
+	}
 
 	/**
 	 * @return string
@@ -80,10 +88,12 @@ class TodoEntry
 	}
 	/**
 	 * @param string $text
+	 * @return Foomo\Examples\Todo\Entities\TodoEntry
 	 */
 	public function setText($text)
 	{
 		$this->text = $text;
+		return $this;
 	}
 
 	/**
@@ -95,9 +105,11 @@ class TodoEntry
 	}
 	/**
 	 * @param boolean $complete
+	 * @return Foomo\Examples\Todo\Entities\TodoEntry
 	 */
 	public function setComplete($complete)
 	{
 		$this->complete = $complete;
+		return $this;
 	}
 }

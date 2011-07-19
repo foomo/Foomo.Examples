@@ -74,6 +74,7 @@ class TodoList
 	 */
 	public function addEntry(\Foomo\Examples\Todo\Entities\TodoEntry $entry)
 	{
+		if (is_null($entry->getId())) $entry->setId(md5(microtime() . '-somesalt-' . __CLASS__));
 		if (!is_null($this->getEntry($entry->getId()))) trigger_error('Entry ' . $entry->getId() . ' already exists!', E_USER_ERROR);
 		array_unshift($this->entries, $entry);
 		return $this;
@@ -95,6 +96,17 @@ class TodoList
 	public function getEntries()
 	{
 		return $this->entries;
+	}
+
+	/**
+	 * @return Foomo\Examples\Todo\Entities\TodoList
+	 */
+	public function removeEntry($id)
+	{
+		$entries = array();
+		foreach($this->entries as $entry) if($entry->getId() != $id) $entries[] = $entry;
+		$this->entries = $entries;
+		return $this;
 	}
 
 	/**
